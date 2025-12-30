@@ -19,12 +19,78 @@
 
         body { 
             background-color: var(--navy-blue);
+            /* Smooth Animated Gradient Background */
+            background: linear-gradient(-45deg, #000435, #050a4d, #001a33, #000435);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
             color: #e0e0e0; 
             font-family: 'Lora', serif;
             scroll-behavior: smooth;
             overflow-x: hidden;
         }
 
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Hero Entrance Section */
+        .hero-curtain {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .hero-glass-box {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(25px);
+            padding: 40px;
+            border-radius: 30px;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            max-width: 700px;
+            width: 90%;
+        }
+
+        .profile-img {
+            width: 160px; height: 160px; object-fit: cover;
+            border-radius: 50%; border: 4px solid var(--accent-cyan);
+            box-shadow: 0 0 25px rgba(0, 210, 255, 0.3);
+        }
+
+        /* Smaller Download Button */
+        .btn-download {
+            background: var(--accent-cyan); color: var(--navy-blue);
+            font-weight: bold; border-radius: 50px; 
+            padding: 10px 30px; font-size: 0.9rem;
+            text-decoration: none; display: inline-block; transition: 0.3s;
+            box-shadow: 0 0 15px rgba(0, 210, 255, 0.4); 
+            margin-top: 15px; text-transform: uppercase; letter-spacing: 1px;
+        }
+        .btn-download:hover { transform: scale(1.05); color: var(--navy-blue); box-shadow: 0 0 25px var(--accent-cyan); }
+
+        /* Vanishing Scroll Indicator */
+        .scroll-down {
+            position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%);
+            color: var(--accent-cyan); text-decoration: none; 
+            transition: opacity 0.4s ease, visibility 0.4s;
+            z-index: 5;
+        }
+        .scroll-down.vanished { opacity: 0; visibility: hidden; }
+        
+        .bounce-icon { animation: bounce 2s infinite; display: block; }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-10px);}
+            60% {transform: translateY(-5px);}
+        }
+
+        /* Glass Cards */
         .glass-card {
             background: var(--glass);
             backdrop-filter: blur(15px);
@@ -36,90 +102,69 @@
             overflow: hidden;
             transition: 0.4s ease;
         }
-
-        /* Glossy Shine Streak */
-        .glass-card::after {
-            content: "";
-            position: absolute;
-            top: -100%; left: -100%;
-            width: 40%; height: 300%;
-            background: linear-gradient(to right, transparent, rgba(255,255,255,0.15), transparent);
-            transform: rotate(45deg);
-            transition: all 0.7s ease;
-        }
-
         .glass-card:hover { transform: translateY(-8px); border-color: var(--accent-cyan); }
-        .glass-card:hover::after { left: 150%; }
-
-        .profile-img {
-            width: 180px; height: 180px; object-fit: cover;
-            border-radius: 50%; border: 4px solid var(--accent-cyan);
-            box-shadow: 0 0 25px rgba(0, 210, 255, 0.3);
-        }
 
         .section-title {
-            font-size: 2.2rem; font-weight: 700; color: #fff;
+            font-size: 2rem; font-weight: 700; color: #fff;
             border-left: 5px solid var(--accent-cyan);
-            padding-left: 15px; text-transform: uppercase; margin: 40px 0 25px;
+            padding-left: 15px; text-transform: uppercase; margin: 50px 0 25px;
         }
 
         .pill-toggle {
             display: inline-block; border: 2px solid var(--accent-cyan);
-            border-radius: 50px; padding: 10px 25px;
+            border-radius: 50px; padding: 8px 20px;
             color: var(--accent-cyan); text-decoration: none;
-            transition: 0.3s; margin: 8px;
+            transition: 0.3s; margin: 5px; font-size: 0.9rem;
         }
-
         .pill-toggle:hover { background: var(--accent-cyan); color: var(--navy-blue); }
 
-        .btn-download {
-            background: var(--accent-cyan); color: var(--navy-blue);
-            font-weight: bold; border-radius: 50px; padding: 14px 40px;
-            text-decoration: none; display: inline-block; transition: 0.3s;
-            box-shadow: 0 0 15px rgba(0, 210, 255, 0.4); margin-top: 20px;
-        }
-
-        /* Mobile Specific Fixes */
-        @media (max-width: 768px) {
-            .profile-img { width: 140px; height: 140px; }
-            .display-3 { font-size: 2.5rem; }
-            .section-title { font-size: 1.6rem; margin: 30px 0 15px; }
-            .glass-card { padding: 15px; }
-            .btn-download { width: 100%; text-align: center; }
-        }
-
         .point-list { list-style: none; padding: 0; }
-        .point-list li { padding: 8px 0; border-bottom: 1px solid var(--glass-border); font-size: 1.1rem; }
+        .point-list li { padding: 8px 0; border-bottom: 1px solid var(--glass-border); font-size: 1rem; }
         .point-list li::before { content: "▹ "; color: var(--accent-cyan); margin-right: 10px; }
+
+        @media (max-width: 768px) {
+            .hero-glass-box { padding: 30px 20px; }
+            .display-3 { font-size: 2.2rem; }
+            .section-title { font-size: 1.5rem; }
+        }
     </style>
 </head>
 <body>
-    <header class="py-5 text-center">
-        <div class="container">
-            <div class="mb-4" data-aos="zoom-in-down" data-aos-duration="1500">
+
+    <section class="hero-curtain">
+        <div class="hero-glass-box" data-aos="fade-down" data-aos-duration="1200">
+            <div class="mb-4" data-aos="zoom-in" data-aos-delay="400">
                 <img src="{{ url_for('static', filename='Hena_photo.jpg') }}" alt="Hena Mahata" class="profile-img">
             </div>
-            <h1 class="display-3 fw-bold text-white" data-aos="flip-up" data-aos-delay="200">{{ data.name }}</h1>
+            <h1 class="display-3 fw-bold text-white mb-2">{{ data.name }}</h1>
+            <p class="mb-4 opacity-75">Professional Portfolio</p>
             
-            <div class="d-flex flex-wrap justify-content-center mt-3" data-aos="fade-up" data-aos-delay="400">
+            <div class="d-flex flex-wrap justify-content-center">
                 <span class="pill-toggle">{{ data.contact.mobile }}</span>
                 <a href="mailto:{{ data.contact.email }}" class="pill-toggle">{{ data.contact.email }}</a>
                 <a href="{{ data.contact.linkedin }}" target="_blank" class="pill-toggle">LinkedIn Profile</a>
             </div>
 
-            <div class="mt-4" data-aos="fade-up" data-aos-delay="600">
-                <a href="{{ url_for('static', filename='Hena_Resume.pdf') }}" download class="btn-download">Download Resume PDF 📥</a>
+            <div>
+                <a href="{{ url_for('static', filename='Hena_Resume.pdf') }}" download class="btn-download">Download Resume 📥</a>
             </div>
         </div>
-    </header>
 
-    <main class="container py-5">
+        <a href="#main-content" class="scroll-down" id="scroll-indicator">
+            <small class="d-block text-uppercase mb-2" style="letter-spacing: 2px;">Scroll to Explore</small>
+            <span class="bounce-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 13l5 5 5-5M7 6l5 5 5-5"/></svg>
+            </span>
+        </a>
+    </section>
+
+    <main class="container py-5" id="main-content">
         <div class="row g-5">
             <div class="col-lg-8">
-                <h2 class="section-title" data-aos="slide-right">Objective</h2>
-                <div class="glass-card" data-aos="zoom-in-right"><p class="fs-5">{{ data.objective }}</p></div>
+                <h2 class="section-title" data-aos="fade-right">Objective</h2>
+                <div class="glass-card" data-aos="fade-up"><p class="fs-5">{{ data.objective }}</p></div>
 
-                <h2 class="section-title" data-aos="slide-right">Technical Projects</h2>
+                <h2 class="section-title" data-aos="fade-right">Technical Projects</h2>
                 {% for project in data.projects %}
                 <div class="glass-card" data-aos="fade-up">
                     <h3 class="text-white fw-bold mb-2">{{ project.title }}</h3>
@@ -133,7 +178,7 @@
                 </div>
                 {% endfor %}
 
-                <h2 class="section-title" data-aos="slide-right">Industrial Training</h2>
+                <h2 class="section-title" data-aos="fade-right">Industrial Training</h2>
                 <div class="row g-4">
                     {% for t in data.trainings %}
                     <div class="col-md-6">
@@ -146,7 +191,7 @@
                     {% endfor %}
                 </div>
 
-                <h2 class="section-title" data-aos="slide-right">Position of Responsibilities</h2>
+                <h2 class="section-title" data-aos="fade-right">Position of Responsibilities</h2>
                 {% for r in data.responsibilities %}
                 <div class="glass-card d-flex justify-content-between align-items-center" data-aos="fade-left">
                     <div><h5 class="fw-bold mb-0 text-white">{{ r.role }}</h5><p class="small opacity-50 mb-0">{{ r.org }}</p></div>
@@ -157,7 +202,7 @@
 
             <div class="col-lg-4">
                 <div class="sticky-top" style="top: 2rem;">
-                    <div class="glass-card" data-aos="zoom-in-left">
+                    <div class="glass-card" data-aos="fade-left">
                         <h4 class="text-white mb-3 fw-bold">EDUCATION</h4>
                         {% for edu in data.education %}
                         <div class="mb-3 border-bottom border-secondary pb-2">
@@ -167,31 +212,40 @@
                         {% endfor %}
                     </div>
 
-                    <div class="glass-card" data-aos="zoom-in-left" data-aos-delay="200">
+                    <div class="glass-card" data-aos="fade-left" data-aos-delay="100">
                         <h4 class="text-white mb-3 fw-bold">EXPERTISE</h4>
                         <ul class="point-list">{% for s in data.skills %}<li>{{ s }}</li>{% endfor %}</ul>
                     </div>
 
-                    <div class="glass-card" data-aos="zoom-in-left" data-aos-delay="300">
+                    <div class="glass-card" data-aos="fade-left" data-aos-delay="200">
                         <h4 class="text-white mb-3 fw-bold">PUBLICATION</h4>
                         <h6 class="text-white small fw-bold mb-2">{{ data.publication.title }}</h6>
                         <a href="{{ data.publication.url }}" target="_blank" class="btn btn-sm btn-outline-info w-100 mt-2">View Paper ↗</a>
                     </div>
 
-                    <div class="glass-card" data-aos="zoom-in-left" data-aos-delay="400">
+                    <div class="glass-card" data-aos="fade-left" data-aos-delay="300">
                         <h4 class="text-white mb-3 fw-bold">LANGUAGES</h4>
                         <ul class="point-list">{% for lang in data.languages %}<li>{{ lang }}</li>{% endfor %}</ul>
-                    </div>
-
-                    <div class="glass-card" data-aos="zoom-in-left" data-aos-delay="500">
-                        <h4 class="text-white mb-3 fw-bold">INTERESTS</h4>
-                        <ul class="point-list">{% for hobby in data.hobbies %}<li>{{ hobby }}</li>{% endfor %}</ul>
                     </div>
                 </div>
             </div>
         </div>
     </main>
+
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>AOS.init({ duration: 1000, once: true, easing: 'ease-out-back' });</script>
+    <script>
+        // Initialize Animations
+        AOS.init({ duration: 1000, once: true });
+
+        // Scroll Logic: Vanish indicator
+        window.onscroll = function() {
+            const indicator = document.getElementById('scroll-indicator');
+            if (window.scrollY > 50) {
+                indicator.classList.add('vanished');
+            } else {
+                indicator.classList.remove('vanished');
+            }
+        };
+    </script>
 </body>
 </html>
