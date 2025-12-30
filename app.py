@@ -21,8 +21,8 @@ def home():
         ],
         "skills": ["Python", "C", "SQL", "Machine Learning", "Verbal & Written Communication", "Leadership", "Time Management", "Adaptibility"],
         "trainings": [
-            {"topic": "AI, Data Science, and Machine Learning using Python", "org": "Ardent Computech Pvt. Ltd.", "dur": "1 month"},
-            {"topic": "Basic PLC and SCADA", "org": "MSME - TOOL ROOM (CTTC), Bonhooghly", "dur": "15 days"}
+            {"topic": "AI, Data Science, and Machine Learning using Python", "certificate_img": "AI_ML.jpg", "org": "Ardent Computech Pvt. Ltd.", "dur": "1 month"},
+            {"topic": "Basic PLC and SCADA", "certificate_img": "PLC_SCADA.jpg", "org": "MSME - TOOL ROOM (CTTC), Bonhooghly", "dur": "15 days"}
         ],
         "projects": [
             {
@@ -47,7 +47,11 @@ def home():
             "journal": "Luminescence 2023", "date": "May 2024",
             "url": "https://www.researchgate.net/publication/380466444_Luminescence_2023_Proceedings"
         },
-        "languages": ["English (Fluent)", "Hindi (Fluent)", "Bengali (Fluent)"],
+        "languages": [
+            {"name": "English", "level": 95},
+            {"name": "Hindi", "level": 100},
+            {"name": "Bengali", "level": 85}
+        ],
         "hobbies": ["Sports", "Painting", "Travelling"]
     }
     return render_template('index.html', data=resume_data)
